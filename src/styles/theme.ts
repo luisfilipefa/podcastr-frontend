@@ -16,14 +16,12 @@ const styles = {
       color: "gray.700",
       fontFamily: "Lexend",
       fontWeight: 600,
-      fontSize: "24",
     },
     body: {
       bg: mode("light.gray.50", "dark.gray.900")(props),
       color: mode("light.gray.600", "dark.gray.50")(props),
       fontFamily: "Inter",
       fontWeight: 400,
-      fontSize: "16",
     },
   }),
 };

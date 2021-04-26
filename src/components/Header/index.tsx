@@ -30,7 +30,7 @@ export default function Header() {
         variant="link"
         onClick={toggleColorMode}
       />
-      <Text textTransform="capitalize" fontSize="sm">
+      <Text textTransform="capitalize" fontSize="xs">
         {currentDate}
       </Text>
     </Flex>
