@@ -18,6 +18,7 @@ interface PlayerContextData {
   play: (episode: Episode) => void;
   togglePlay: () => void;
   setPlayingState: (state: boolean) => void;
+  playList: (list: Episode[]) => void;
 }
 
 interface PlayerProviderProps {
@@ -45,6 +46,8 @@ export function PlayerProvider({ children }: PlayerProviderProps) {
     setIsPlaying(state);
   };
 
+  const playList = (list: Episode[]) => {};
+
   return (
     <PlayerContext.Provider
       value={{
@@ -54,6 +57,7 @@ export function PlayerProvider({ children }: PlayerProviderProps) {
         play,
         setPlayingState,
         togglePlay,
+        playList,
       }}
     >
       {children}

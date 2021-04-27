@@ -11,6 +11,7 @@ import {
 } from "@chakra-ui/react";
 
 import { FiPlay } from "react-icons/fi";
+import Link from "next/link";
 import React from "react";
 import { usePlayer } from "../../contexts/PlayerContext";
 
@@ -51,9 +52,11 @@ export default function AllEpisodes({ episodes }: AllEpisodesProps) {
             objectFit="contain"
             borderTopRadius="lg"
           />
-          <Heading fontSize="xs" align="justify" mt="2" mb="2">
-            {episode.title}
-          </Heading>
+          <Link href={`/episodes/${episode.id}`}>
+            <Heading fontSize="xs" align="justify" mt="2" mb="2">
+              {episode.title}
+            </Heading>
+          </Link>
           <Flex align="center" justifyContent="space-between">
             <Box>
               <Text
@@ -87,7 +90,7 @@ export default function AllEpisodes({ episodes }: AllEpisodesProps) {
                   color={isDarkMode ? "dark.orange" : "light.purple.600"}
                 />
               }
-              bg={isDarkMode ? "dark.gray.900" : "light.gray.50"}
+              bg={isDarkMode ? "dark.gray.900" : "light.purple.100"}
               onClick={() => play(episode)}
             />
           </Flex>

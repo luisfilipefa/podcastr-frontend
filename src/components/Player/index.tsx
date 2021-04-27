@@ -5,13 +5,13 @@ import {
   Icon,
   IconButton,
   Image,
-  Stack,
   Text,
   useColorMode,
 } from "@chakra-ui/react";
 import { FiPause, FiPlay } from "react-icons/fi";
 import React, { useEffect, useRef } from "react";
 
+import Link from "next/link";
 import { usePlayer } from "../../contexts/PlayerContext";
 
 export default function Player() {
@@ -60,24 +60,25 @@ export default function Player() {
             w="80px"
             objectFit="cover"
           />
-          <Box>
-            <Heading
-              fontSize="sm"
-              w="200px"
-              whiteSpace="nowrap"
-              overflow="hidden"
-              textOverflow="ellipsis"
-              color={isDarkMode ? "dark.gray.900" : "light.white"}
-            >
-              {episode.title}
-            </Heading>
-            <Text
-              fontSize="x-small"
-              color={isDarkMode ? "dark.gray.900" : "light.white"}
-            >
-              {episode.members}
-            </Text>
-          </Box>
+          <Link href={`/episodes/${episode.id}`}>
+            <Box w="calc(100% - 160px)">
+              <Heading
+                fontSize="sm"
+                whiteSpace="nowrap"
+                overflow="hidden"
+                textOverflow="ellipsis"
+                color={isDarkMode ? "dark.gray.900" : "light.white"}
+              >
+                {episode.title}
+              </Heading>
+              <Text
+                fontSize="x-small"
+                color={isDarkMode ? "dark.gray.900" : "light.white"}
+              >
+                {episode.members}
+              </Text>
+            </Box>
+          </Link>
           <IconButton
             aria-label="Tocar episódio"
             icon={

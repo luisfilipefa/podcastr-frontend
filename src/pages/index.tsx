@@ -31,11 +31,6 @@ interface HomeProps {
 }
 
 export default function Home({ latestEpisodes, allEpisodes }) {
-  const { colorMode } = useColorMode();
-  const darkMode = colorMode === "dark" ? true : false;
-
-  const { play } = usePlayer();
-
   return (
     <>
       <Head>
