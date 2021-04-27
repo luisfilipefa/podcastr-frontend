@@ -7,7 +7,7 @@ import { ptBR } from "date-fns/locale";
 
 export default function Header() {
   const { colorMode, toggleColorMode } = useColorMode();
-  const darkMode = colorMode === "dark" ? true : false;
+  const isDarkMode = colorMode === "dark" ? true : false;
   const currentDate = format(new Date(), "EEEEEE, dd 'de' MMM", {
     locale: ptBR,
   });
@@ -17,16 +17,17 @@ export default function Header() {
       align="center"
       justifyContent="space-between"
       p={{ sm: "3" }}
+      bg={isDarkMode ? "dark.gray.800" : "light.white"}
       borderBottom="1px"
       borderColor="dark.orange"
     >
       <Image
-        src={darkMode ? "/logo-dark.svg" : "/logo-light.svg"}
+        src={isDarkMode ? "/logo-dark.svg" : "/logo-light.svg"}
         alt="Podcastr"
       />
       <IconButton
         aria-label="Mudar tema"
-        icon={darkMode ? <FiSun /> : <FiMoon />}
+        icon={isDarkMode ? <FiSun /> : <FiMoon />}
         variant="link"
         onClick={toggleColorMode}
       />

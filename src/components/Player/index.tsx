@@ -7,6 +7,7 @@ import {
   Image,
   Stack,
   Text,
+  useColorMode,
 } from "@chakra-ui/react";
 import { FiPause, FiPlay } from "react-icons/fi";
 import React, { useEffect, useRef } from "react";
@@ -14,6 +15,8 @@ import React, { useEffect, useRef } from "react";
 import { usePlayer } from "../../contexts/PlayerContext";
 
 export default function Player() {
+  const { colorMode } = useColorMode();
+  const isDarkMode = colorMode === "dark" ? true : false;
   const {
     currentEpisodeIndex,
     episodeList,
@@ -39,14 +42,15 @@ export default function Player() {
   return (
     <>
       {episode && (
-        <Stack
+        <Flex
           direction="row"
+          align="center"
+          justifyContent="space-between"
           h={{ sm: "80px" }}
           w="100vw"
           position="fixed"
           bottom="0"
-          bg="dark.orange"
-          align="center"
+          bg={isDarkMode ? "dark.orange" : "light.purple.600"}
           spacing="2"
         >
           <Image
@@ -56,43 +60,51 @@ export default function Player() {
             w="80px"
             objectFit="cover"
           />
-          <Flex align="center" justify="space-between" p="2">
-            <Box>
-              <Heading
-                fontSize="sm"
-                w="220px"
-                whiteSpace="nowrap"
-                overflow="hidden"
-                textOverflow="ellipsis"
-                color="dark.gray.900"
-              >
-                {episode.title}
-              </Heading>
-              <Text fontSize="x-small" color="gray.800">
-                {episode.members}
-              </Text>
-            </Box>
-            <IconButton
-              aria-label="Tocar episódio"
-              icon={
-                isPlaying ? (
-                  <Icon as={FiPause} color="dark.orange" />
-                ) : (
-                  <Icon as={FiPlay} color="dark.orange" />
-                )
-              }
-              bg="dark.gray.900"
-              onClick={togglePlay}
-            />
-          </Flex>
+          <Box>
+            <Heading
+              fontSize="sm"
+              w="200px"
+              whiteSpace="nowrap"
+              overflow="hidden"
+              textOverflow="ellipsis"
+              color={isDarkMode ? "dark.gray.900" : "light.white"}
+            >
+              {episode.title}
+            </Heading>
+            <Text
+              fontSize="x-small"
+              color={isDarkMode ? "dark.gray.900" : "light.white"}
+            >
+              {episode.members}
+            </Text>
+          </Box>
+          <IconButton
+            aria-label="Tocar episódio"
+            icon={
+              isPlaying ? (
+                <Icon
+                  as={FiPause}
+                  color={isDarkMode ? "dark.orange" : "light.purple.600"}
+                />
+              ) : (
+                <Icon
+                  as={FiPlay}
+                  color={isDarkMode ? "dark.orange" : "light.purple.600"}
+                />
+              )
+            }
+            bg={isDarkMode ? "dark.gray.900" : "light.purple.100"}
+            onClick={togglePlay}
+            mr="2"
+          />
           <audio
             ref={audioRef}
             src={episode.url}
             autoPlay
             onPlay={() => setPlayingState(true)}
             onPause={() => setPlayingState(false)}
-          ></audio>
-        </Stack>
+          />
+        </Flex>
       )}
     </>
   );

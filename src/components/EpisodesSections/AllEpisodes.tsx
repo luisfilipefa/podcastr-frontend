@@ -7,6 +7,7 @@ import {
   Image,
   SimpleGrid,
   Text,
+  useColorMode,
 } from "@chakra-ui/react";
 
 import { FiPlay } from "react-icons/fi";
@@ -29,6 +30,8 @@ interface AllEpisodesProps {
 }
 
 export default function AllEpisodes({ episodes }: AllEpisodesProps) {
+  const { colorMode } = useColorMode();
+  const isDarkMode = colorMode === "dark" ? true : false;
   const { play } = usePlayer();
 
   return (
@@ -37,7 +40,7 @@ export default function AllEpisodes({ episodes }: AllEpisodesProps) {
         <Flex
           direction="column"
           justifyContent="space-between"
-          bg="dark.gray.800"
+          bg={isDarkMode ? "dark.gray.800" : "light.white"}
           borderRadius="lg"
           p="2"
         >
@@ -48,20 +51,14 @@ export default function AllEpisodes({ episodes }: AllEpisodesProps) {
             objectFit="contain"
             borderTopRadius="lg"
           />
-          <Heading
-            fontSize="xs"
-            fontWeight="semibold"
-            align="justify"
-            mt="2"
-            mb="2"
-          >
+          <Heading fontSize="xs" align="justify" mt="2" mb="2">
             {episode.title}
           </Heading>
           <Flex align="center" justifyContent="space-between">
             <Box>
               <Text
                 fontSize="x-small"
-                color="dark.orange"
+                color={isDarkMode ? "dark.orange" : "light.gray.600"}
                 w="100px"
                 whiteSpace="nowrap"
                 overflow="hidden"
@@ -69,17 +66,28 @@ export default function AllEpisodes({ episodes }: AllEpisodesProps) {
               >
                 {episode.members}
               </Text>
-              <Text fontSize="x-small" color="dark.orange">
+              <Text
+                fontSize="x-small"
+                color={isDarkMode ? "dark.orange" : "light.gray.600"}
+              >
                 {episode.publishedAt}
               </Text>
-              <Text fontSize="x-small" color="dark.orange">
+              <Text
+                fontSize="x-small"
+                color={isDarkMode ? "dark.orange" : "light.gray.600"}
+              >
                 {episode.duration}
               </Text>
             </Box>
             <IconButton
               aria-label="Tocar episódio"
-              icon={<Icon as={FiPlay} color="dark.orange" />}
-              bg="dark.gray.900"
+              icon={
+                <Icon
+                  as={FiPlay}
+                  color={isDarkMode ? "dark.orange" : "light.purple.600"}
+                />
+              }
+              bg={isDarkMode ? "dark.gray.900" : "light.gray.50"}
               onClick={() => play(episode)}
             />
           </Flex>

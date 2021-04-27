@@ -19,7 +19,7 @@ const styles = {
     },
     body: {
       bg: mode("light.gray.50", "dark.gray.900")(props),
-      color: mode("light.gray.600", "dark.gray.50")(props),
+      color: mode("light.gray.700", "dark.gray.50")(props),
       fontFamily: "Inter",
       fontWeight: 400,
     },
