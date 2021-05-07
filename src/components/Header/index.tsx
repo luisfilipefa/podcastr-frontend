@@ -28,7 +28,7 @@ export default function Header() {
       <IconButton
         aria-label="Mudar tema"
         icon={isDarkMode ? <FiSun /> : <FiMoon />}
-        variant="link"
+        bg="inherit"
         onClick={toggleColorMode}
       />
       <Text textTransform="capitalize" fontSize="xs">

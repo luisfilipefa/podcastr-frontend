@@ -5,6 +5,7 @@ import {
   Icon,
   IconButton,
   Image,
+  Stack,
   Text,
   useColorMode,
 } from "@chakra-ui/react";
@@ -42,35 +43,35 @@ export default function Player() {
   return (
     <>
       {episode && (
-        <Flex
-          direction="row"
-          align="center"
-          justifyContent="space-between"
-          h={{ sm: "80px" }}
-          w="100vw"
-          position="fixed"
-          bottom="0"
-          bg={isDarkMode ? "dark.orange" : "light.purple.600"}
-          spacing="2"
-        >
-          <Image
-            src={episode.thumbnail}
-            alt={episode.title}
-            h="80px"
-            w="80px"
-            objectFit="cover"
-          />
-          <Link href={`/episodes/${episode.id}`}>
-            <Box w="calc(100% - 160px)">
-              <Heading
-                fontSize="sm"
-                whiteSpace="nowrap"
-                overflow="hidden"
-                textOverflow="ellipsis"
-                color={isDarkMode ? "dark.gray.900" : "light.white"}
-              >
-                {episode.title}
-              </Heading>
+        <>
+          <Flex
+            align="center"
+            justifyContent="space-between"
+            h={{ sm: "80px" }}
+            w="100%"
+            position="fixed"
+            bottom="0"
+            bg={isDarkMode ? "dark.orange" : "light.purple.600"}
+            pr="2"
+          >
+            <Image
+              src={episode.thumbnail}
+              alt={episode.title}
+              h="80px"
+              w="80px"
+              objectFit="cover"
+            />
+            <Box mx="2">
+              <Link href={`/episodes/${episode.id}`}>
+                <Heading
+                  fontSize="sm"
+                  align="justify"
+                  color={isDarkMode ? "dark.gray.900" : "light.white"}
+                  _hover={{ textDecoration: "underline", cursor: "pointer" }}
+                >
+                  {episode.title}
+                </Heading>
+              </Link>
               <Text
                 fontSize="x-small"
                 color={isDarkMode ? "dark.gray.900" : "light.white"}
@@ -78,26 +79,26 @@ export default function Player() {
                 {episode.members}
               </Text>
             </Box>
-          </Link>
-          <IconButton
-            aria-label="Tocar episódio"
-            icon={
-              isPlaying ? (
-                <Icon
-                  as={FiPause}
-                  color={isDarkMode ? "dark.orange" : "light.purple.600"}
-                />
-              ) : (
-                <Icon
-                  as={FiPlay}
-                  color={isDarkMode ? "dark.orange" : "light.purple.600"}
-                />
-              )
-            }
-            bg={isDarkMode ? "dark.gray.900" : "light.purple.100"}
-            onClick={togglePlay}
-            mr="2"
-          />
+            <IconButton
+              aria-label="Tocar episódio"
+              icon={
+                isPlaying ? (
+                  <Icon
+                    as={FiPause}
+                    color={isDarkMode ? "dark.orange" : "light.purple.600"}
+                  />
+                ) : (
+                  <Icon
+                    as={FiPlay}
+                    color={isDarkMode ? "dark.orange" : "light.purple.600"}
+                  />
+                )
+              }
+              bg={isDarkMode ? "dark.gray.900" : "light.purple.100"}
+              onClick={togglePlay}
+              ml="auto"
+            />
+          </Flex>
           <audio
             ref={audioRef}
             src={episode.url}
@@ -105,7 +106,7 @@ export default function Player() {
             onPlay={() => setPlayingState(true)}
             onPause={() => setPlayingState(false)}
           />
-        </Flex>
+        </>
       )}
     </>
   );

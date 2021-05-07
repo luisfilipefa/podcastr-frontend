@@ -34,8 +34,7 @@ export default function Home({ latestEpisodes, allEpisodes }) {
   return (
     <>
       <Head>
-        <title>Create Next App</title>
-        <link rel="icon" href="/favicon.png" />
+        <title>Home | Podcastr</title>
       </Head>
 
       <Stack p="3" spacing="10">

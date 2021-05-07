@@ -53,7 +53,13 @@ export default function AllEpisodes({ episodes }: AllEpisodesProps) {
             borderTopRadius="lg"
           />
           <Link href={`/episodes/${episode.id}`}>
-            <Heading fontSize="xs" align="justify" mt="2" mb="2">
+            <Heading
+              fontSize="xs"
+              align="justify"
+              mt="2"
+              mb="2"
+              _hover={{ textDecoration: "underline", cursor: "pointer" }}
+            >
               {episode.title}
             </Heading>
           </Link>

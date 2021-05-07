@@ -76,10 +76,17 @@ export default function Episode({ episode }: EpisodeProps) {
           direction="column"
           spacing="5"
           p="3"
+          w="100vw"
           borderBottom="1px"
           borderColor={isDarkMode ? "dark.orange" : "light.gray.100"}
         >
-          <Heading fontSize="xl">{episode.title}</Heading>
+          <Heading
+            fontSize="xl"
+            color={isDarkMode ? "dark.white" : "dark.gray.900"}
+            align="justify"
+          >
+            {episode.title}
+          </Heading>
           <Flex align="center" justifyContent="space-evenly">
             <Text fontSize="xs">{episode.members}</Text>
             <Text fontSize="xs">{episode.publishedAt}</Text>

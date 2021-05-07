@@ -54,7 +54,11 @@ export default function LatestEpisodes({ episodes }: LatestEpisodesProps) {
               borderTopRadius="lg"
             />
             <Link href={`/episodes/${episode.id}`}>
-              <Heading fontSize="xs" align="justify">
+              <Heading
+                fontSize="xs"
+                align="justify"
+                _hover={{ textDecoration: "underline", cursor: "pointer" }}
+              >
                 {episode.title}
               </Heading>
             </Link>
