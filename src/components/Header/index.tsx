@@ -16,7 +16,7 @@ export default function Header() {
     <Flex
       align="center"
       justifyContent="space-between"
-      p={{ sm: "3" }}
+      p="3"
       bg={isDarkMode ? "dark.gray.800" : "light.white"}
       borderBottom="1px"
       borderColor="dark.orange"

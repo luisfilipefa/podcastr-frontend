@@ -37,7 +37,11 @@ export default function LatestEpisodes({ episodes }: LatestEpisodesProps) {
   const { play } = usePlayer();
 
   return (
-    <SimpleGrid columns={{ sm: 1 }} rowGap={{ sm: 2 }}>
+    <SimpleGrid
+      columns={{ sm: 1, md: 2 }}
+      rowGap={{ sm: 2 }}
+      columnGap={{ md: 2 }}
+    >
       {episodes.map((episode) => (
         <Flex
           direction="column"

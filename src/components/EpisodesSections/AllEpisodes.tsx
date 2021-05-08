@@ -36,7 +36,11 @@ export default function AllEpisodes({ episodes }: AllEpisodesProps) {
   const { play } = usePlayer();
 
   return (
-    <SimpleGrid columns={{ sm: 2 }} rowGap={{ sm: 2 }} columnGap={{ sm: 2 }}>
+    <SimpleGrid
+      columns={{ sm: 2, md: 3 }}
+      rowGap={{ sm: 2 }}
+      columnGap={{ sm: 2 }}
+    >
       {episodes.map((episode) => (
         <Flex
           direction="column"

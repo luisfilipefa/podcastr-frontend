@@ -1,6 +1,6 @@
 import { Box, Flex, Heading, Stack, Text } from "@chakra-ui/layout";
 import { GetStaticPaths, GetStaticProps } from "next";
-import { format, parseISO } from "date-fns";
+import { getEpisode, getEpisodes } from "../../services/api";
 
 import { FiPlay } from "react-icons/fi";
 import Icon from "@chakra-ui/icon";
@@ -9,7 +9,6 @@ import { Image } from "@chakra-ui/image";
 import { IoChevronBack } from "react-icons/io5";
 import Link from "next/link";
 import React from "react";
-import { api } from "../../services/api";
 import { ptBR } from "date-fns/locale";
 import styles from "./episode.module.css";
 import { useColorMode } from "@chakra-ui/react";
@@ -107,11 +106,9 @@ export default function Episode({ episode }: EpisodeProps) {
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const response = await api.get(
-    "/episodes?_limit=12&_sort=published_at&_order=desc"
-  );
+  const episodes = await getEpisodes();
 
-  const paths = response.data.map((episode) => ({
+  const paths = episodes.map((episode) => ({
     params: { slug: episode.id },
   }));
 
@@ -119,19 +116,9 @@ export const getStaticPaths: GetStaticPaths = async () => {
 };
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
-  const response = await api.get(`/episodes/${params.slug}`);
-  const episode: Episode = {
-    id: response.data.id,
-    title: response.data.title,
-    members: response.data.members,
-    publishedAt: format(parseISO(response.data.published_at), "dd MMM yyyy", {
-      locale: ptBR,
-    }),
-    thumbnail: response.data.thumbnail,
-    description: response.data.description,
-    url: response.data.file.url,
-    duration: response.data.file.duration,
-  };
+  const { slug } = params;
+
+  const episode = await getEpisode(String(slug));
 
   return { props: { episode } };
 };
