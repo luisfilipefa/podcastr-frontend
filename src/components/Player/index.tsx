@@ -49,7 +49,7 @@ export default function Player() {
             justifyContent="space-between"
             h={{ sm: "80px" }}
             w="100%"
-            position="fixed"
+            position="sticky"
             bottom="0"
             bg={isDarkMode ? "dark.orange" : "light.purple.600"}
             pr="2"

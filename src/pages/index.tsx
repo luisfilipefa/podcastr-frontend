@@ -19,7 +19,7 @@ export default function Home({ latestEpisodes, allEpisodes }: HomeProps) {
         <title>Home | Podcastr</title>
       </Head>
 
-      <Stack p="3" spacing="10">
+      <Stack p="3" spacing="10" w="100%" maxW="1024px" mx="auto">
         <section>
           <Heading fontSize="lg" align="center" mb="3">
             Últimos Lançamentos

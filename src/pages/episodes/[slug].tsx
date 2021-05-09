@@ -36,7 +36,7 @@ export default function Episode({ episode }: EpisodeProps) {
 
   return (
     <>
-      <Box position="relative" w="100vw">
+      <Box position="relative" w="100%" maxW="1024px" mx="auto">
         <Link href="/">
           <IconButton
             aria-label="Voltar"
@@ -75,22 +75,29 @@ export default function Episode({ episode }: EpisodeProps) {
           direction="column"
           spacing="5"
           p="3"
-          w="100vw"
+          w="100%"
+          maxW="1024px"
+          mx="auto"
           borderBottom="1px"
           borderColor={isDarkMode ? "dark.orange" : "light.gray.100"}
         >
           <Heading
             fontSize="xl"
             color={isDarkMode ? "dark.white" : "dark.gray.900"}
-            align="justify"
+            align="center"
           >
             {episode.title}
           </Heading>
-          <Flex align="center" justifyContent="space-evenly">
+          <Stack
+            direction="row"
+            align="center"
+            spacing="5"
+            justifyContent="center"
+          >
             <Text fontSize="xs">{episode.members}</Text>
             <Text fontSize="xs">{episode.publishedAt}</Text>
             <Text fontSize="xs">{episode.duration}</Text>
-          </Flex>
+          </Stack>
         </Stack>
       </header>
       <article>
@@ -98,6 +105,9 @@ export default function Episode({ episode }: EpisodeProps) {
           dangerouslySetInnerHTML={{ __html: episode.description }}
           align="justify"
           p="5"
+          w="100%"
+          maxW="1024px"
+          mx="auto"
           className={styles.description}
         />
       </article>
